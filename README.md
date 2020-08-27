@@ -204,12 +204,12 @@ y_test = load_y(y_test_path)
 
 ```
 
-##Let's try to visualize the data for a sec
+## Let's try to visualize the data for a sec
 We'll create a function to prepare our data for plotting and then well use matplotlib notebook magic function to interact with the plots. Sounds fun right :)
 
 Lets jump right in.
 
-```
+```python
 %matplotlib notebook
 
 plt.rcParams['figure.figsize'] = (6, 4)
@@ -254,7 +254,7 @@ def prep_data(path_list):
 
 ## Great job, now lets get our axis values for acc and gyr from our built function
 
-```
+```python
 acc_x, acc_y, acc_z = prep_data(X_train_signals_paths[0:3])
 gyr_x, gyr_y, gyr_z = prep_data(X_train_signals_paths[3:6])
 
@@ -264,7 +264,7 @@ gyr_x, gyr_y, gyr_z = prep_data(X_train_signals_paths[3:6])
 
 Now lets creat our two axis for plotting this data we've prepared
 
-```
+```python
 # Create Figure for plotting Accelerometer reading
 
 fig = plt.figure()
