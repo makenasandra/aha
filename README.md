@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # <a title="Activity Recognition" href="https://github.com/guillaume-chevalier/LSTM-Human-Activity-Recognition" > LSTMs for Human Activity Recognition</a>
 
@@ -703,3 +704,6 @@ We've also created another course on how to do Clean Machine Learning with the r
     [NbConvertApp] Making directory LSTM_files
     [NbConvertApp] Making directory LSTM_files
     [NbConvertApp] Writing 38654 bytes to LSTM.md
+=======
+#AHA
+>>>>>>> b3476ac8ae3a4bf1387b2584d9f40805390d8f62
