@@ -204,6 +204,101 @@ y_test = load_y(y_test_path)
 
 ```
 
+##Let's try to visualize the data for a sec
+We'll create a function to prepare our data for plotting and then well use matplotlib notebook magic function to interact with the plots. Sounds fun right :)
+
+Lets jump right in.
+
+```
+%matplotlib notebook
+
+plt.rcParams['figure.figsize'] = (6, 4)
+plt.rcParams['figure.dpi'] = 150
+
+# Function to Read and Prepare data for plotting
+
+def prep_data(path_list):
+    
+    file_x = open(path_list[0], 'r')
+    file_y = open(path_list[1], 'r')
+    file_z = open(path_list[2], 'r')
+    
+    x_data = np.array([elem for elem in [(row.replace('  ', ' ').strip().split(' ')) for row in file_x]])
+    y_data = np.array([elem for elem in [row.replace('  ', ' ').strip().split(' ') for row in file_y]])
+    z_data = np.array([elem for elem in [row.replace('  ', ' ').strip().split(' ') for row in file_z]])
+    
+    file_x.close()
+    file_y.close()
+    file_z.close()
+    
+    x_sample = x_data[:, 0]
+    y_sample = y_data[:, 0]
+    z_sample = y_data[:, 0]
+    
+    k = x_sample.tolist()
+    k2 = y_sample.tolist()
+    k3 = z_sample.tolist()
+    
+    for i in range(len(k)):
+        k[i] = float(k[i])
+        k2[i] = float(k2[i])
+        k3[i] = float(k3[i])
+    
+    new_x = np.array(k)
+    new_y = np.array(k2)
+    new_z = np.array(k3)
+    
+    return new_x, new_y, new_z
+
+```
+
+## Great job, now lets get our axis values for acc and gyr from our built function
+
+```
+acc_x, acc_y, acc_z = prep_data(X_train_signals_paths[0:3])
+gyr_x, gyr_y, gyr_z = prep_data(X_train_signals_paths[3:6])
+
+```
+
+## Next step, isn't it wonderful to break things down :)
+
+Now lets creat our two axis for plotting this data we've prepared
+
+```
+# Create Figure for plotting Accelerometer reading
+
+fig = plt.figure()
+ax = plt.axes()
+ax.plot(acc_x, 'r', label='acc in x-axis')
+ax.plot(acc_y, 'g', label='acc in y-axis')
+ax.plot(acc_z, 'b', label='acc in z-axis')
+ax.grid(True, which='both')
+ax.set_title('Accelerometer Reading')
+ax.set_ylabel('Acceleration')
+ax.set_xlabel('Time Steps')
+ax.legend()
+
+# Create figure for plotting Gyroscope readings
+
+fig2 = plt.figure()
+ax2 = plt.axes()
+ax2.plot(gyr_x, 'r', label='Orientation in x-axis')
+ax2.plot(gyr_y, 'g', label='Orientation in y-axis')
+ax2.plot(gyr_z, 'b', label ='Orientation in z-axis')
+ax2.grid(True, which='both')
+ax2.legend()
+ax2.set_title('Gyroscope Readings')
+ax2.set_ylabel('Orientation')
+ax2.set_xlabel('Time Steps')
+
+plt.show()
+
+```
+
+![LSTM Training Testing Comparison Curve](LSTM_files/acc.png)
+![LSTM Training Testing Comparison Curve](LSTM_files/gyr.png)
+
+
 ## Additionnal Parameters:
 
 Here are some core parameter definitions for the training.
