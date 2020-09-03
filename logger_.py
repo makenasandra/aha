@@ -1,20 +1,9 @@
-# metawear
-Function to stream and write MetaMotion R sensor data in an excel file with two sheets
-- Accelerometer
-- Gyroscope
-
-## Import packages
-```python
 from time import sleep
 
 from pymetawear.client import MetaWearClient
 from xlwt import Workbook
 
-```
 
-## Create function to stream accelerometer data
-
-```python
 def stream_acc_data(device, seconds=10.0, data_rate=100.0, data_range=16.0):
 
     data_points = []
@@ -34,10 +23,8 @@ def stream_acc_data(device, seconds=10.0, data_rate=100.0, data_range=16.0):
     print("Finished logging!")
 
     return data_points
-```
 
-## Create function to stream gyroscope data
-```python
+
 def stream_gyro_data(device, seconds=10.0, data_rate=200.0, data_range=1000.0):
     data_points = []
 
@@ -57,13 +44,7 @@ def stream_gyro_data(device, seconds=10.0, data_rate=200.0, data_range=1000.0):
 
     return data_points
 
-```
 
-## Create function to write data to excel
-The excel has two sheets
-- Accelerometer
-- Gyroscope
-```python
 def write_to_excel(acc_data, gyro_data, fname):
     # Workbook is created
     wb = Workbook()
@@ -97,11 +78,8 @@ def write_to_excel(acc_data, gyro_data, fname):
     print("Finished!")
     print(f"Saving data to '{fname}'")
     wb.save(fname)
-```
 
-## Conditional to call all the functions
-This basically runs the program
-```python
+
 if __name__ == '__main__':
     c = MetaWearClient('EE:50:E7:BF:21:83')
 
@@ -111,7 +89,3 @@ if __name__ == '__main__':
     write_to_excel(acc, gyro, fname='test.xls')
 
     c.disconnect()
-```
-
-## Next step
-Collect the data from the 'test.xls' file and preprocess it before applying ML algorithms to it
